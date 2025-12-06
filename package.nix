@@ -17,8 +17,7 @@ stdenv.mkDerivation {
   in ''
     runHook preBuild
 
-    mkdir -p public
-    ${bbBin} linkseq.clj > public/index.html
+    ${bbBin} linkseq.clj
 
     runHook postBuild
   '';

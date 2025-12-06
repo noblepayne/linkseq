@@ -59,14 +59,36 @@ header {
 h1 {
   font-size: 26px;
   font-weight: 700;
+  font-style: italic;
   margin-bottom: 2px;
   color: #fafafa;
+  text-shadow:
+    0 0 20px rgba(255, 123, 84, 0.5),
+    0 0 40px rgba(255, 123, 84, 0.3);
 }
 
 .bio {
   color: #d4d4d8;
   font-size: 15px;
   line-height: 1.6;
+}
+
+.bio.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+}
+
+.bio .separator {
+  color: #ff7b54;
+  font-weight: 500;
+  user-select: none;
+}
+
+.bio .tag {
+  white-space: nowrap;
 }
 
 #links {
@@ -148,6 +170,26 @@ h1 {
   z-index: 1;
 }
 
+/* Brand color variants via data attributes */
+.link-card[data-brand="github"] {
+  --brand-color: #ff9d6f;
+}
+.link-card[data-brand="linkedin"] {
+  --brand-color: #6dd5ed;
+}
+.link-card[data-brand="youtube"] {
+  --brand-color: #ff6b9d;
+}
+.link-card[data-brand="x"] {
+  --brand-color: #4fc3f7;
+}
+.link-card[data-brand="accent"] {
+  --brand-color: #ff7b54;
+}
+.link-card[data-brand="teal"] {
+  --brand-color: #5eead4;
+}
+
 #socials {
   display: flex;
   gap: 18px;
@@ -180,19 +222,32 @@ h1 {
   filter: drop-shadow(0 0 4px var(--brand-color));
 }
 
+.social-link[data-brand="github"] {
+  --brand-color: #ff9d6f;
+}
+.social-link[data-brand="linkedin"] {
+  --brand-color: #6dd5ed;
+}
+.social-link[data-brand="teal"] {
+  --brand-color: #5eead4;
+}
+
 footer {
   font-size: 13px;
   color: #71717a;
   margin-top: 12px;
 }
 
-footer a {
+.source-link {
+  font-family: "Monaco", "Menlo", "Courier New", monospace;
+  font-style: italic;
+  font-size: 13px;
   color: #ff7b54;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-footer a:hover {
+.source-link:hover {
   color: #ff9d6f;
 }
 

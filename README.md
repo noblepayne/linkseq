@@ -1,6 +1,6 @@
 # linkseq
 
-A list of links in Lisp. Static site generator for personal link aggregation pages, built with Babashka and Hiccup.
+A list of links in Lisp. Static site generator for personal link aggregation.
 
 ## Overview
 

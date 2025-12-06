@@ -22,6 +22,7 @@
           pkgs.babashka
           pkgs.cljfmt
           pkgs.nodePackages.prettier
+          pkgs.mdformat
         ];
         shellHook = ''
           if [ -n "$OLDSHELL" ]; then

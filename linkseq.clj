@@ -40,7 +40,7 @@
    :links [{:label "Open Source Projects"     :url "https://github.com/noblepayne"          :icon :github   :color :github}
            {:label "LinkedIn / CV"            :url "https://www.linkedin.com/in/noblepayne" :icon :linkedin :color :linkedin}
            {:label "LINUX Unplugged"          :url "https://linuxunplugged.com"             :icon :podcast  :color :youtube}
-           {:label "BoostBox Metadata Server" :url "https://github.com/noblepayne/boostbox" :icon :boostbox :color :accent}]
+           {:label "BoostBox Metadata Server" :url "https://boostbox.noblepayne.com"        :icon :boostbox :color :accent}]
 
    :socials [{:url "https://www.linkedin.com/in/noblepayne" :icon :linkedin :color :linkedin}
              {:url "https://github.com/noblepayne" :icon :github   :color :github}

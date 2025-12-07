@@ -34,7 +34,8 @@
 
 (def site
   {:title "Wes Payne"
-   :avatar (h/raw (slurp "assets/avatar.txt"))
+   :avatar "assets/avatar.txt"
+   :favicon "assets/favicon.txt"
    :source "https://github.com/noblepayne/linkseq"
 
    :bio {:tagline "Software Engineer & Podcaster"
@@ -79,11 +80,12 @@
      [:title (:title data)]
      [:link {:href "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
              :rel "stylesheet"}]
+     [:link {:rel "icon" :type "image/png" :href (h/raw (slurp (:favicon data)))}]
      [:style css]]
     [:body
      [:main#main
       [:header
-       [:img.avatar {:src (:avatar data) :alt (:title data)}]
+       [:img.avatar {:src (h/raw (slurp (:avatar data))) :alt (:title data)}]
        [:h1 (:title data)]
        [:p.bio (get-in data [:bio :tagline])]
        (render-bio-tags (get-in data [:bio :tags]))]

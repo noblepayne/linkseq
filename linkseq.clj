@@ -27,15 +27,15 @@
    :bio {:tagline "Software Engineer & Podcaster"
          :tags ["Distributed Systems" "Podcasting 2.0" "Clojure" "Nix"]}
 
-   :links [{:label "LinkedIn / CV"            :url "https://www.linkedin.com/in/noblepayne" :icon :linkedin :color :linkedin}
-           {:label "LINUX Unplugged"          :url "https://linuxunplugged.com"             :icon :podcast  :color :youtube}
-           {:label "Open Source Projects"     :url "https://github.com/noblepayne"          :icon :github   :color :github}
+   :links [{:label "LinkedIn / CV"            :url "https://www.linkedin.com/in/noblepayne" :icon :linkedin :color :blue}
+           {:label "LINUX Unplugged"          :url "https://linuxunplugged.com"             :icon :podcast  :color :pink}
+           {:label "Open Source Projects"     :url "https://github.com/noblepayne"          :icon :github   :color :orange}
            {:label "BoostBox Metadata Server" :url "https://boostbox.noblepayne.com"        :icon :boostbox :color :teal}]
 
-   :socials [{:url "https://www.linkedin.com/in/noblepayne" :icon :linkedin :color :linkedin}
-             {:url "https://github.com/noblepayne"          :icon :github   :color :github}
+   :socials [{:url "https://www.linkedin.com/in/noblepayne" :icon :linkedin :color :blue}
+             {:url "https://github.com/noblepayne"          :icon :github   :color :orange}
              {:url "https://x.com/wespayne"                 :icon :x        :color :teal}
-             {:url "mailto:wes@noblepayne.com"              :icon :email    :color :email}]
+             {:url "mailto:wes@noblepayne.com"              :icon :email    :color :pink}]
    :source "https://github.com/noblepayne/linkseq"})
 
 ;; ============================================================
@@ -62,9 +62,11 @@
      [:meta {:charset "utf-8"}]
      [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
      [:meta {:name "description" :content (get-in data [:bio :tagline])}]
+     [:meta {:name "color-scheme" :content "dark"}]
      [:title (:title data)]
-     [:link {:href "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-             :rel "stylesheet"}]
+     [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
+     [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin "anonymous"}]
+     [:link {:href "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" :rel "stylesheet" :media "print" :onload "this.media='all'"}]
      [:link {:rel "icon" :type "image/png" :href (read-file favicon)}]
      [:style (read-file css)]]
     [:body
@@ -81,7 +83,7 @@
           {:href url
            :target "_blank"
            :rel "noopener noreferrer"
-           :data-brand (name color)}
+           :data-color (name color)}
           (when icon [:span.link-icon (render-icon icons icon)])
           [:span.link-title label]])]
 
@@ -92,7 +94,7 @@
            :target "_blank"
            :rel "noopener noreferrer"
            :aria-label (name icon)
-           :data-brand (name color)}
+           :data-color (name color)}
           (render-icon icons icon)])]
 
       [:footer

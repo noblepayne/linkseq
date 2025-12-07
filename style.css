@@ -9,6 +9,14 @@
 :root {
   color-scheme: dark;
   --background-color: #f5f5f5;
+
+  /* Color palette */
+  --color-orange: #ff9d6f;
+  --color-blue: #6dd5ed;
+  --color-pink: #ff6b9d;
+  --color-cyan: #4fc3f7;
+  --color-accent: #ff7b54;
+  --color-teal: #5eead4;
 }
 
 body {
@@ -90,7 +98,7 @@ h1 {
 }
 
 .bio .separator {
-  color: #ff7b54;
+  color: var(--color-accent);
   font-weight: 500;
 }
 
@@ -137,7 +145,7 @@ h1 {
   background: linear-gradient(
     135deg,
     transparent 0%,
-    var(--brand-color, rgba(255, 123, 84, 0.12)) 100%
+    var(--link-color, rgba(255, 123, 84, 0.12)) 100%
   );
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -151,7 +159,7 @@ h1 {
   -webkit-transform: translateY(-3px);
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(255, 123, 84, 0.35);
-  border-color: var(--brand-color, rgba(255, 123, 84, 0.7));
+  border-color: var(--link-color, rgba(255, 123, 84, 0.7));
   background: rgba(39, 39, 42, 0.7);
 }
 
@@ -164,7 +172,7 @@ h1 {
   height: 22px;
   margin-right: 14px;
   flex-shrink: 0;
-  color: var(--brand-color, #ff9d6f);
+  color: var(--link-color, var(--color-orange));
   position: relative;
   z-index: 1;
 }
@@ -172,7 +180,7 @@ h1 {
 .link-icon svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 0 6px var(--brand-color));
+  filter: drop-shadow(0 0 6px var(--link-color));
 }
 
 .link-title {
@@ -180,24 +188,35 @@ h1 {
   z-index: 1;
 }
 
-/* Brand color variants via data attributes */
-.link-card[data-brand="github"] {
-  --brand-color: #ff9d6f;
+/* Color variants via data attributes */
+.link-card[data-color="orange"],
+.social-link[data-color="orange"] {
+  --link-color: var(--color-orange);
 }
-.link-card[data-brand="linkedin"] {
-  --brand-color: #6dd5ed;
+
+.link-card[data-color="blue"],
+.social-link[data-color="blue"] {
+  --link-color: var(--color-blue);
 }
-.link-card[data-brand="youtube"] {
-  --brand-color: #ff6b9d;
+
+.link-card[data-color="pink"],
+.social-link[data-color="pink"] {
+  --link-color: var(--color-pink);
 }
-.link-card[data-brand="x"] {
-  --brand-color: #4fc3f7;
+
+.link-card[data-color="cyan"],
+.social-link[data-color="cyan"] {
+  --link-color: var(--color-cyan);
 }
-.link-card[data-brand="accent"] {
-  --brand-color: #ff7b54;
+
+.link-card[data-color="accent"],
+.social-link[data-color="accent"] {
+  --link-color: var(--color-accent);
 }
-.link-card[data-brand="teal"] {
-  --brand-color: #5eead4;
+
+.link-card[data-color="teal"],
+.social-link[data-color="teal"] {
+  --link-color: var(--color-teal);
 }
 
 #socials {
@@ -212,7 +231,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--brand-color);
+  color: var(--link-color);
   background: rgba(39, 39, 42, 0.4);
   border: 1.5px solid rgba(255, 123, 84, 0.15);
   border-radius: 50%;
@@ -223,27 +242,14 @@ h1 {
   -webkit-transform: translateY(-3px);
   transform: translateY(-3px);
   background: rgba(39, 39, 42, 0.7);
-  border-color: var(--brand-color);
+  border-color: var(--link-color);
   box-shadow: 0 4px 16px rgba(255, 123, 84, 0.3);
 }
 
 .social-link svg {
   width: 22px;
   height: 22px;
-  filter: drop-shadow(0 0 4px var(--brand-color));
-}
-
-.social-link[data-brand="github"] {
-  --brand-color: #ff9d6f;
-}
-.social-link[data-brand="linkedin"] {
-  --brand-color: #6dd5ed;
-}
-.social-link[data-brand="teal"] {
-  --brand-color: #5eead4;
-}
-.social-link[data-brand="email"] {
-  --brand-color: #ff6b9d;
+  filter: drop-shadow(0 0 4px var(--link-color));
 }
 
 footer {
@@ -256,13 +262,13 @@ footer {
   font-family: "Monaco", "Menlo", "Courier New", monospace;
   font-style: italic;
   font-size: 13px;
-  color: #ff7b54;
+  color: var(--color-accent);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .source-link:hover {
-  color: #ff9d6f;
+  color: var(--color-orange);
 }
 
 @media (max-width: 480px) {

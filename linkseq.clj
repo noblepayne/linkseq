@@ -15,7 +15,8 @@
    :youtube   "#FF6B9D"
    :x         "#4FC3F7"
    :accent    "#FF7B54"
-   :teal      "#5EEAD4"})
+   :teal      "#5EEAD4"
+   :email     "#FF6B9D"})
 
 (def icons
   {:globe     (slurp "assets/globe.svg")
@@ -24,7 +25,8 @@
    :youtube   (slurp "assets/youtube.svg")
    :podcast   (slurp "assets/podcast.svg")
    :linkedin  (slurp "assets/linkedin.svg")
-   :x         (slurp "assets/x.svg")})
+   :x         (slurp "assets/x.svg")
+   :email     (slurp "assets/email.svg")})
 
 ;; ============================================================
 ;; CONFIG
@@ -37,14 +39,15 @@
    :bio {:tagline "Software Engineer & Podcaster"
          :tags ["Distributed Systems" "Podcasting 2.0" "Clojure" "Nix"]}
 
-   :links [{:label "Open Source Projects"     :url "https://github.com/noblepayne"          :icon :github   :color :github}
-           {:label "LinkedIn / CV"            :url "https://www.linkedin.com/in/noblepayne" :icon :linkedin :color :linkedin}
+   :links [{:label "LinkedIn / CV"            :url "https://www.linkedin.com/in/noblepayne" :icon :linkedin :color :linkedin}
            {:label "LINUX Unplugged"          :url "https://linuxunplugged.com"             :icon :podcast  :color :youtube}
+           {:label "Open Source Projects"     :url "https://github.com/noblepayne"          :icon :github   :color :github}
            {:label "BoostBox Metadata Server" :url "https://boostbox.noblepayne.com"        :icon :boostbox :color :accent}]
 
    :socials [{:url "https://www.linkedin.com/in/noblepayne" :icon :linkedin :color :linkedin}
-             {:url "https://github.com/noblepayne" :icon :github   :color :github}
-             {:url "https://x.com/wespayne" :icon :x :color :teal}]})
+             {:url "https://github.com/noblepayne"          :icon :github   :color :github}
+             {:url "https://x.com/wespayne"                 :icon :x        :color :teal}
+             {:url "mailto:wes@noblepayne.com"              :icon :email    :color :email}]})
 
 ;; ============================================================
 ;; CSS

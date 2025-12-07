@@ -19,14 +19,10 @@
       system: pkgs:
         treefmt-nix.lib.evalModule pkgs {
           projectRootFile = "flake.nix";
-
           programs.alejandra.enable = true;
           programs.cljfmt.enable = true;
           programs.prettier.enable = true;
           programs.mdformat.enable = true;
-
-          # Optional: configure prettier settings
-          # settings.formatter.prettier.options = ["--tab-width" "2"];
         }
     );
   in {

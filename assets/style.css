@@ -235,6 +235,9 @@ h1 {
 .social-link[data-brand="teal"] {
   --brand-color: #5eead4;
 }
+.social-link[data-brand="email"] {
+  --brand-color: #ff6b9d;
+}
 
 footer {
   font-size: 13px;

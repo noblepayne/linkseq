@@ -8,7 +8,7 @@ linkseq generates a single, self-contained HTML file from a Clojure script. Edit
 
 ## Installation
 
-[Install Nix.](https://nixos.org/download/#nix-install-linux)
+[Install Nix.](https://nixos.org/download/)
 
 ## Development
 
@@ -44,7 +44,7 @@ Edit the `site` map in `linkseq.clj`:
 (def site
   {:title "Your Name"
    :avatar (h/raw (slurp "assets/avatar.txt"))
-   :bio-lines [...]
+   :bio [...]
    :links [...]
    :socials [...]})
 ```
@@ -53,7 +53,7 @@ Add links, change colors, modify layout; it's just Clojure.
 
 ## Tech
 
-Built with [Hiccup](https://github.com/weavejester/hiccup) for HTML generation and [Babashka](https://babashka.org) for scripting.
+Built with [Hiccup](https://github.com/weavejester/hiccup) for HTML generation, [Babashka](https://babashka.org) for scripting, and [Nix](https://nixos.org/) for everything else.
 
 ## License
 

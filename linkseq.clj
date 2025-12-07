@@ -35,6 +35,7 @@
 (def site
   {:title "Wes Payne"
    :avatar (h/raw (slurp "assets/avatar.txt"))
+   :source "https://github.com/noblepayne/linkseq"
 
    :bio {:tagline "Software Engineer & Podcaster"
          :tags ["Distributed Systems" "Podcasting 2.0" "Clojure" "Nix"]}
@@ -109,7 +110,7 @@
 
       [:footer
        [:a.source-link
-        {:href "https://github.com/noblepayne/linkseq"
+        {:href (:source data)
          :target "_blank"
          :rel "noopener noreferrer"}
         "source"]]]]]))

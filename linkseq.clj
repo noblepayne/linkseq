@@ -1,43 +1,29 @@
 #!/usr/bin/env bb
-(ns render
+(ns linkseq
   (:require
    [clojure.java.io :as io]
    [clojure.string :as str]
    [hiccup2.core :as h]))
 
 ;; ============================================================
-;; BRAND COLORS & ICONS
-;; ============================================================
-
-(def brands
-  {:github    "#FF9D6F"
-   :linkedin  "#6DD5ED"
-   :youtube   "#FF6B9D"
-   :x         "#4FC3F7"
-   :accent    "#FF7B54"
-   :teal      "#5EEAD4"
-   :email     "#FF6B9D"})
-
-(def icons
-  {:globe     (slurp "assets/globe.svg")
-   :boostbox  (slurp "assets/boostbox.svg")
-   :github    (slurp "assets/github.svg")
-   :youtube   (slurp "assets/youtube.svg")
-   :podcast   (slurp "assets/podcast.svg")
-   :linkedin  (slurp "assets/linkedin.svg")
-   :x         (slurp "assets/x.svg")
-   :email     (slurp "assets/email.svg")})
-
-;; ============================================================
 ;; CONFIG
 ;; ============================================================
 
-(def site
-  {:title "Wes Payne"
+(def config
+  {;; Assets
+   :css  "style.css"
    :avatar "assets/avatar.txt"
    :favicon "assets/favicon.txt"
-   :source "https://github.com/noblepayne/linkseq"
+   :icons {:globe     "assets/globe.svg"
+           :boostbox  "assets/boostbox.svg"
+           :github    "assets/github.svg"
+           :podcast   "assets/podcast.svg"
+           :linkedin  "assets/linkedin.svg"
+           :x         "assets/x.svg"
+           :email     "assets/email.svg"}
 
+   ;; Personal Info
+   :title "Wes Payne"
    :bio {:tagline "Software Engineer & Podcaster"
          :tags ["Distributed Systems" "Podcasting 2.0" "Clojure" "Nix"]}
 
@@ -49,27 +35,26 @@
    :socials [{:url "https://www.linkedin.com/in/noblepayne" :icon :linkedin :color :linkedin}
              {:url "https://github.com/noblepayne"          :icon :github   :color :github}
              {:url "https://x.com/wespayne"                 :icon :x        :color :teal}
-             {:url "mailto:wes@noblepayne.com"              :icon :email    :color :email}]})
-
-;; ============================================================
-;; CSS
-;; ============================================================
-
-(def css (h/raw (slurp "assets/style.css")))
+             {:url "mailto:wes@noblepayne.com"              :icon :email    :color :email}]
+   :source "https://github.com/noblepayne/linkseq"})
 
 ;; ============================================================
 ;; RENDERING
 ;; ============================================================
 
-(defn render-icon [k]
-  (when k (h/raw (get icons k ""))))
+(defn read-file [filepath]
+  (h/raw (slurp filepath)))
+
+(defn render-icon [icons k]
+  (assert (contains? icons k) (str "icon k (" k ") not found in icons: " icons))
+  (when k (read-file (get icons k))))
 
 (defn render-bio-tags [tags]
   [:p.bio.tags
    (interpose [:span.separator "|"]
               (map (fn [tag] [:span.tag tag]) tags))])
 
-(defn page [data]
+(defn render [{:keys [:css :favicon :avatar :icons] :as data}]
   (h/html
    (h/raw "<!DOCTYPE html>")
    [:html {:lang "en"}
@@ -80,12 +65,12 @@
      [:title (:title data)]
      [:link {:href "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
              :rel "stylesheet"}]
-     [:link {:rel "icon" :type "image/png" :href (h/raw (slurp (:favicon data)))}]
-     [:style css]]
+     [:link {:rel "icon" :type "image/png" :href (read-file favicon)}]
+     [:style (read-file css)]]
     [:body
      [:main#main
       [:header
-       [:img.avatar {:src (h/raw (slurp (:avatar data))) :alt (:title data)}]
+       [:img.avatar {:src (read-file avatar) :alt (:title data)}]
        [:h1 (:title data)]
        [:p.bio (get-in data [:bio :tagline])]
        (render-bio-tags (get-in data [:bio :tags]))]
@@ -97,7 +82,7 @@
            :target "_blank"
            :rel "noopener noreferrer"
            :data-brand (name color)}
-          (when icon [:span.link-icon (render-icon icon)])
+          (when icon [:span.link-icon (render-icon icons icon)])
           [:span.link-title label]])]
 
       [:div#socials {:role "navigation" :aria-label "Social links"}
@@ -108,7 +93,7 @@
            :rel "noopener noreferrer"
            :aria-label (name icon)
            :data-brand (name color)}
-          (render-icon icon)])]
+          (render-icon icons icon)])]
 
       [:footer
        [:a.source-link
@@ -122,9 +107,10 @@
 ;; ============================================================
 
 (defn -main []
-  (let [out-dir (io/file "public")]
+  (let [out-dir-prefix "public"
+        out-dir (io/file out-dir-prefix)]
     (.mkdirs out-dir)
-    (spit (io/file out-dir "index.html") (str (page site)))
-    (println "✅ Generated public/index.html")))
+    (spit (io/file out-dir "index.html") (render config))
+    (println (str "✅ Generated " out-dir-prefix "/index.html"))))
 
 (-main)

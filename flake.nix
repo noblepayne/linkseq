@@ -3,12 +3,15 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    cljfmt.url = "github:noblepayne/cljfmt-flake";
+    cljfmt.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     self,
     nixpkgs,
     treefmt-nix,
+    cljfmt,
   }: let
     supportedSystems = ["x86_64-linux" "aarch64-linux"];
     pkgsBySystem = nixpkgs.lib.getAttrs supportedSystems nixpkgs.legacyPackages;
@@ -21,6 +24,7 @@
           projectRootFile = "flake.nix";
           programs.alejandra.enable = true;
           programs.cljfmt.enable = true;
+          programs.cljfmt.package = cljfmt.packages.${system}.default;
           programs.prettier.enable = true;
           programs.mdformat.enable = true;
         }
